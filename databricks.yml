@@ -23,11 +23,11 @@ resources:
           - start
         env:
           - name: DATABRICKS_WAREHOUSE_ID
-            valueFrom: sql-warehouse
+            value_from: sql-warehouse
           - name: GENIE_SPACE_ID
-            valueFrom: genie-space
+            value_from: genie-space
           - name: DATABRICKS_TABLES
-            valueFrom: databricks-tables
+            value_from: databricks-tables
 
       resources:
         - name: sql-warehouse

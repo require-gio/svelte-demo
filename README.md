@@ -55,6 +55,12 @@ App runs at `http://localhost:5173`.
 - [Databricks CLI](https://docs.databricks.com/dev-tools/cli/index.html) installed and authenticated
 - A Databricks SQL Warehouse, a configured Genie Space, and a secret scope with the `databricks-tables` key
 
+### 0. Sync
+
+```sh
+databricks sync --watch . /Workspace/Users/giorgi.lomidze@outlook.de/svelte-demo
+```
+
 ### 1. Build the app
 
 ```sh
