@@ -38,11 +38,15 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		// ── 2. Optional: conversationId für Follow-up-Fragen ──
 		const conversationId: string | undefined = body.conversationId?.trim() || undefined;
+		const tableName: string | undefined = body.tableName?.trim() || undefined;
 
-		console.log(`[Chat] Frage: "${question}" | Conversation: ${conversationId ?? 'NEU'}`);
+		console.log(`[Chat] Frage: "${question}" | Tabelle: ${tableName ?? '-'} | Conversation: ${conversationId ?? 'NEU'}`);
 
 		// ── 3. Genie API aufrufen ──
-		const result = await askGenie(question, conversationId);
+		const genieQuestion = tableName
+			? `[Table: ${tableName}] ${question}`
+			: question;
+		const result = await askGenie(genieQuestion, conversationId);
 
 		// ── 4. Ergebnis formatieren und zurückgeben ──
 		if (result.columns && result.rows && result.rows.length > 0) {

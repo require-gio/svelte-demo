@@ -254,7 +254,7 @@
     <!-- TAB 4: CHAT (Genie Conversation API)                         -->
     <!-- ============================================================ -->
     <Tabs.Content value="chat" class="flex-1 overflow-hidden m-0 p-0">
-      <ChatWindow />
+      <ChatWindow tableName={selectedTable || undefined} />
     </Tabs.Content>
   </Tabs.Root>
 </div>

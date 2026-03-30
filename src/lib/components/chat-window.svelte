@@ -43,6 +43,8 @@
     title?: string;
     /** Subtitle / description on the welcome screen. */
     welcomeDescription?: string;
+    /** Currently selected table name (full Unity Catalog path). */
+    tableName?: string;
     /** Additional CSS classes for the root container. */
     class?: string;
   }
@@ -52,6 +54,7 @@
     suggestions = ['Wie viele Einträge gibt es?', 'Zeige die ersten 10 Zeilen', 'Welche Spalten gibt es?'],
     title = 'Genie Chat',
     welcomeDescription = 'Stelle Fragen in natürlicher Sprache. Databricks Genie übersetzt sie in SQL und liefert die Ergebnisse direkt.',
+    tableName,
     class: className = '',
   }: ChatWindowProps = $props();
 
@@ -81,7 +84,7 @@
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question, conversationId })
+        body: JSON.stringify({ question, conversationId, tableName })
       });
 
       const data: ChatResponse = await response.json();
