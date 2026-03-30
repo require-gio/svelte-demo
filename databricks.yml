@@ -1,0 +1,62 @@
+# ============================================================
+# databricks.yml – Databricks Asset Bundle Configuration
+# ============================================================
+# Defines the app resource for deployment via DABs (databricks bundle).
+# For Git-based deployment, push to Git and deploy from the
+# Databricks UI or CLI.
+# ============================================================
+
+bundle:
+  name: svelte-demo
+
+resources:
+  apps:
+    svelte-demo:
+      name: svelte-demo
+      description: "Conversational BI – Chat-to-Data im Versicherungsumfeld"
+      source_code_path: .
+
+      config:
+        command:
+          - npm
+          - run
+          - start
+        env:
+          - name: DATABRICKS_WAREHOUSE_ID
+            valueFrom: sql-warehouse
+          - name: GENIE_SPACE_ID
+            valueFrom: genie-space
+          - name: DATABRICKS_TABLES
+            valueFrom: databricks-tables
+
+      resources:
+        - name: sql-warehouse
+          sql_warehouse:
+            id: ${var.warehouse_id}
+            permission: CAN_USE
+        - name: genie-space
+          genie_space:
+            id: ${var.genie_space_id}
+            permission: CAN_VIEW
+        - name: databricks-tables
+          secret:
+            key: databricks-tables
+            scope: ${var.secret_scope}
+            permission: CAN_READ
+
+      permissions:
+        - service_principal_name: ${bundle.target}.svelte-demo
+          level: CAN_MANAGE
+
+variables:
+  warehouse_id:
+    description: "Databricks SQL Warehouse ID"
+  genie_space_id:
+    description: "Genie Space ID for conversational BI"
+  secret_scope:
+    description: "Secret scope containing app configuration"
+    default: svelte-demo
+
+targets:
+  dev:
+    default: true

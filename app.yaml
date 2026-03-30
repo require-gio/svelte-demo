@@ -1,0 +1,28 @@
+# ============================================================
+# app.yaml – Databricks App Runtime Configuration
+# ============================================================
+# Defines how the SvelteKit app runs inside Databricks Apps.
+# The build step (npm run build) produces a Node.js server
+# in build/. This config starts it on the platform-assigned port.
+# ============================================================
+
+command:
+  - npm
+  - run
+  - start
+
+env:
+  # Auto-injected by Databricks: DATABRICKS_HOST, DATABRICKS_CLIENT_ID,
+  # DATABRICKS_CLIENT_SECRET, DATABRICKS_APP_PORT
+
+  # SQL Warehouse ID for querying data
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+
+  # Genie Space ID (injected from resource config)
+  - name: GENIE_SPACE_ID
+    valueFrom: genie-space
+
+  # Comma-separated fully-qualified table names for the Data Explorer
+  - name: DATABRICKS_TABLES
+    valueFrom: databricks-tables
