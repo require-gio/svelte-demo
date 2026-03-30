@@ -51,7 +51,7 @@
 
   let {
     endpoint = '/api/chat',
-    suggestions = ['Wie viele Einträge gibt es?', 'Zeige die ersten 10 Zeilen', 'Welche Spalten gibt es?'],
+    suggestions = ['Wie ist die Verteilung des Familienstands?', 'Was ist das Höchstalter?', 'Welche 5 Kunden haben die höchsten Prämien?'],
     title = 'Genie Chat',
     welcomeDescription = 'Stelle Fragen in natürlicher Sprache. Databricks Genie übersetzt sie in SQL und liefert die Ergebnisse direkt.',
     tableName,

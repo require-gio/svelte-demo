@@ -16,7 +16,7 @@
   import * as Card from '$lib/components/ui/card';
   import { Badge } from '$lib/components/ui/badge';
   import * as Chart from "$lib/components/ui/chart/index.js";
-  import { BarChart, PieChart, Text, Arc } from 'layerchart';
+  import { BarChart, PieChart, Pie, Group, Text, Arc } from 'layerchart';
 
   let {
     tableName,
@@ -302,34 +302,43 @@
               data={pieChartData}
               key="category"
               value="count"
-              c="color"
+              c="category"
               cRange={pieChartData.map((d) => d.color)}
               props={{
                 pie: {
                   motion: "tween",
                 },
+                legend: {
+                  classes: { swatch: 'shrink-0' },
+                },
               }}
+              legend
             >
-              {#snippet arc({ props, visibleData, index })}
-              hi
-          {@const category = visibleData[index].category}
-          {category}
-          hi
-          <Arc {...props}>
-            {#snippet children({ centroid })}
-            iii
-              <Text
-                value={category}
-                x={centroid[0]}
-                y={centroid[1]}
-                textAnchor="middle"
-                verticalAnchor="middle"
-                font-size="12"
-                class="fill-background capitalize"
-              />
-            {/snippet}
-          </Arc>
-        {/snippet}
+              {#snippet marks({ visibleData, cScale, c })}
+                <Group>
+                  <Pie data={visibleData} let:arcs>
+                    {#each arcs as arc}
+                      <Arc
+                        startAngle={arc.startAngle}
+                        endAngle={arc.endAngle}
+                        fill={cScale?.(c(arc.data))}
+                      >
+                        {#snippet children({ centroid })}
+                          <Text
+                            value={arc.data.category}
+                            x={centroid[0]}
+                            y={centroid[1]}
+                            textAnchor="middle"
+                            verticalAnchor="middle"
+                            font-size="12"
+                            class="fill-background capitalize"
+                          />
+                        {/snippet}
+                      </Arc>
+                    {/each}
+                  </Pie>
+                </Group>
+              {/snippet}
             </PieChart>
           </Chart.Container>
           </Card.Content>

@@ -147,9 +147,9 @@
     <div class="px-6 shrink-0">
       <div class="max-w-7xl mx-auto">
         <Tabs.List class="w-auto">
-          <Tabs.Trigger value="explorer">Schema-Explorer</Tabs.Trigger>
-          <Tabs.Trigger value="data">Daten-Explorer</Tabs.Trigger>
-          <Tabs.Trigger value="interactive">Interaktiv</Tabs.Trigger>
+          <Tabs.Trigger value="explorer">Schema</Tabs.Trigger>
+          <Tabs.Trigger value="data">Tabelle</Tabs.Trigger>
+          <Tabs.Trigger value="interactive">Explorer</Tabs.Trigger>
           <Tabs.Trigger value="chat">Chat</Tabs.Trigger>
         </Tabs.List>
       </div>
