@@ -25,4 +25,4 @@ env:
 
   # Comma-separated fully-qualified table names for the Data Explorer
   - name: DATABRICKS_TABLES
-    valueFrom: databricks-tables
+    value: workspace.insurance.synthetic_insurance_data,workspace.insurance.auto_insurance

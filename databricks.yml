@@ -39,10 +39,7 @@ resources:
             id: ${var.genie_space_id}
             permission: CAN_VIEW
         - name: databricks-tables
-          secret:
-            key: databricks-tables
-            scope: ${var.secret_scope}
-            permission: CAN_READ
+          value: workspace.insurance.synthetic_insurance_data,workspace.insurance.auto_insurance
 
       permissions:
         - service_principal_name: ${bundle.target}.svelte-demo
