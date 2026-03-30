@@ -73,5 +73,7 @@ export async function getAccessToken(): Promise<string> {
 export function getDatabricksHost(): string {
 	const host = env.DATABRICKS_HOST;
 	if (!host) throw new Error('DATABRICKS_HOST is not set');
-	return host;
+	// Databricks Apps injects the host without a scheme; normalise to https://
+	if (host.startsWith('https://') || host.startsWith('http://')) return host;
+	return `https://${host}`;
 }
