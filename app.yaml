@@ -25,4 +25,4 @@ env:
 
   # Comma-separated fully-qualified table names for the Data Explorer
   - name: DATABRICKS_TABLES
-    value: workspace.insurance.synthetic_insurance_data,workspace.insurance.auto_insurance
+    value: workspace.insurance.synthetic_insurance_data,workspace.insurance.auto_insurance,system.billing.usage
